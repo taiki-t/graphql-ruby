@@ -112,7 +112,7 @@ module GraphQL
             if !query.valid?
               { "errors" => query.static_errors.map(&:to_h) }
             else
-              {}
+              data_result
             end
           else
             result = { "data" => data_result.to_h }
