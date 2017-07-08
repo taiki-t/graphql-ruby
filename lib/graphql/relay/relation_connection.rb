@@ -64,11 +64,11 @@ module GraphQL
         if last
           if relation_limit(items)
             if last <= relation_limit(items)
-              offset = (relation_offset(items) || 0) + (relation_limit(items) - last)
+              offset = [(relation_offset(items) || 0) + (relation_limit(items) - last), 0].max
               items = items.offset(offset).limit(last)
             end
           else
-            offset = (relation_offset(items) || 0) + relation_count(items) - last
+            offset = [(relation_offset(items) || 0) + relation_count(items) - last, 0].max
             items = items.offset(offset).limit(last)
           end
         end
